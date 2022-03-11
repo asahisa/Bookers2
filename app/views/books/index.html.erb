@@ -1,0 +1,7 @@
+<% @books.each do |post_image| %>
+  <div>
+    <p>title：<%= post_image.title %></p>
+    <p>Opinion：<%= post_image.body %></p>
+    <p>ユーザーネーム：<%= post_image.user.name %></p>
+  </div>
+<% end %>
