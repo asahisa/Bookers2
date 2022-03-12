@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   ## サインイン後のリダイレクト先
   def after_sign_in_path_for(resource)
-    user_path(params[:id])
+    edit_user_path(@user)
   end
 
   ## サインアウト後のリダイレクト先
