@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
 
   ## サインイン後のリダイレクト先
   def after_sign_in_path_for(resource)
-    about_path
+    user_path(params[:id])
   end
 
   ## サインアウト後のリダイレクト先
   def after_sign_out_path_for(resource)
-    about_path
+    new_user_session_path
   end
 
   ## 他コントローラからも参照
