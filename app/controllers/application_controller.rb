@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
-  ## コントローラ実行前に処理
+  ## コントローラ実行前に処理 =>  protected
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   ## サインイン後のリダイレクト先
   def after_sign_in_path_for(resource)
-    edit_user_path(@user)
+    user_path(current_user[:id])
   end
 
   ## サインアウト後のリダイレクト先

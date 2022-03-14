@@ -1,14 +1,10 @@
 class BooksController < ApplicationController
-  def new
-    @books = Book.new
-  end
-
   ## 投稿データの保存
   def create
-    @books = Book.new(post_image_params)
-    @books.user_id = current_user.id
-    if @books.save
-      redirect_to book_path(params[:id]), notice: "Book was successfully created."
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    if @book.save
+      redirect_to user_path(current_user[:id]), notice: "Book was successfully created."
     else
       @books = Book.all
       render :index
@@ -16,20 +12,28 @@ class BooksController < ApplicationController
   end
 
   def index
+    @user = current_user
+    @book = Book.new
     @books = Book.all
   end
 
   def show
-    @books = Book.find(params[:id])
+    @book = Book.new
+    # 投稿ID取得
+    @post = Book.find(params[:id])
+    # 投稿IDから投稿者を取得
+    @user = User.find_by(id: @post.user_id)
+    # ユーザーIDからポストidを取得
+    @books = Book.where(user_id: @post.user_id)
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @books = Book.find(params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
-    if @book.update(book_params)
+    @books = Book.find(params[:id])
+    if @books.update(book_params)
       redirect_to book_path(@book.id), notice: "Book was successfully updated."
     else
       render :edit
