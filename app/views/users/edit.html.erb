@@ -1,9 +1,29 @@
-<h1>ユーザーエディット</h1>
-<div class="container px-5 px-sm-0">
+<p id="notice"></p>
+<div class="container">
   <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+    <%= form_with model: @user do |f| %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, id: "user_name", class: "form-control name" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :image %> <br />
+          <%= f.file_field :profile_image, accept: "image/*" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :introdution %>
+          <%= f.text_area :introdution, id: "user_introdution", class: "form-control introdution" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.submit "Update User", class: "btn btn-secondary" %>
+        </div>
+      <% end %>
       
-    <!-- 共通テンプレート-->
-    <%= render partial: "users/user_info.html.erb", locals: { book: @book, books: @books, user: @user } %>
-    
+    </div>
   </div>
 </div>

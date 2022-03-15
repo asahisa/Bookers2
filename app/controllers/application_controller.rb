@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
-  ## コントローラ実行前に処理 =>  protected
+  ## ログインしてない場合、topへ
+  before_action :authenticate_user!, except: [:top, :about]
+  
+  ## コントローラー実行前に処理 =>  protected
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
+  ## フラッシュメッセージ
+  add_flash_types :success, :info, :warning, :danger
 
   ## サインイン後のリダイレクト先
   def after_sign_in_path_for(resource)
