@@ -4,6 +4,10 @@ class Book < ApplicationRecord
  has_one_attached :image
  ## 1:Nの子設定
  belongs_to :user
+ 
+ ## バリテーション設定
+ validates :title, presence: true
+ validates :body, presence: true
 
  def get_image
   unless image.attached?

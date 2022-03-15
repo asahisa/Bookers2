@@ -1,8 +1,9 @@
-<p id="notice"></p>
 
 <div class="container px-5 px-sm-0">
+  <!--共通テンプレート エラー-->
+  <%= render partial: "books/error.html.erb", locals: { book: @book } %> 
+  
   <div class="row">
-      
     <!-- 共通テンプレート UserInfo-->
     <%= render partial: "users/user_info.html.erb", locals: { book: @book, user: current_user } %>
     
