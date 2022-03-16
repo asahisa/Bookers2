@@ -25,7 +25,9 @@
             <tr>
               <td>
                 <!-- プロフィール画像 -->
-                <%= image_tag post_image.user.get_profile_image(40,40) %>
+                <%= link_to user_path(post_image.id)  do %>
+                  <%= image_tag post_image.user.get_profile_image(40,40) %>
+                <% end %>
               </td>
                 
               <td>

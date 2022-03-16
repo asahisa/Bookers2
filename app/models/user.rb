@@ -12,15 +12,18 @@ class User < ApplicationRecord
   :rememberable,
   ## バリテーション設定
   :validatable
+
+  ## バリテーション設定
+  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: { case_sensitive: false }
+  # validates :introduction, length: { maximum: 50 }
+  validates :introduction, presence: false, length: { maximum: 50 }
   
   ## 1:Nの親設定
-  has_many :book, dependent: :destroy
+  has_many :books, dependent: :destroy
   
   ## プロフィール画像
   has_one_attached :profile_image
   
-  ## バリテーション設定
-  validates :name, length: { minimum: 2 }
   
   def get_profile_image(width, height)
     unless profile_image.attached?

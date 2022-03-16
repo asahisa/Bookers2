@@ -22,12 +22,14 @@
             <tr>
               <td>
                 <!-- プロフィール画像 -->
-                <%= image_tag post_image.user.get_profile_image(50,50) %>
+                <%= link_to user_path(@user[:id]) do %>
+                  <%= image_tag @user.get_profile_image(50,50) %>
+                <% end %>
               </td>
                 
               <td>
                 <!-- タイトル showリンク -->
-                <%= link_to post_image.title, book_path(post_image.id) %>
+                  <%= link_to post_image.title, book_path(post_image[:id]) %>
               </td>
                 
               <td>

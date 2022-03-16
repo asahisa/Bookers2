@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   ## サインアウト後のリダイレクト先
   def after_sign_out_path_for(resource)
-    new_user_session_path
+    "/"
   end
 
   ## 他コントローラからも参照
@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     ## ユーザー登録時, nameデータ操作を許可
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :email ])
   end
 end

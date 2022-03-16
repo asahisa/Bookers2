@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   
   def index
+    @user = current_user
     @users = User.all
     @book = Book.new
     @books = Book.all
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
  private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
   
   def correct_user
